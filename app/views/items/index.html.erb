@@ -1,0 +1,19 @@
+<h1>Home#index</h1>
+<p>Find me in app/views/home/index.html.erb</p>
+
+<%=link_to("ログイン", new_user_session_path)%>
+<%=link_to("ログアウト", destroy_user_session_path, method: :delete)%>
+<div>
+	<% if user_signed_in? %>
+	ユーザーID：　<%= current_user.id %>
+	<% end %>
+</div>
+
+<h2>ITEM</h2>
+<p>所持製品</p>
+<% @items.each do |item| %>
+  <%= item.name %>
+	<%= link_to(item.title, item_path(item.id)) %>
+	<%= item.stock %>
+	<br>
+<%end%>

@@ -1,0 +1,31 @@
+<h1>Carts#edit</h1>
+<p>Find me in app/views/carts/edit.html.erb</p>
+
+  ユーザー：<%= current_user.name %>
+  <br>
+  <br>
+<table>
+  <tr>
+    <td>TITLE</td>
+    <td>ARTIST</td>
+    <td>NUM</td>
+    <td></td>
+  </tr>
+<% @carts.each do |cart| %>
+<% item = Item.find(cart.item_id)%>
+
+<%# 数量変更フォーム　%>
+<%= form_for(cart) do |f|%>
+  <tr>
+    <td><%= link_to item.title, item_path(item) %></td>
+    <td><%= item.name =%></td>
+    <td><%= number_field_tag(:count, cart.count) %>
+      <%= f.submit "変更"%></td>
+    <td><%= link_to "削除", cart_path(cart),method: :delete %></td>
+  </tr>
+<%end%>
+
+<%end%>
+</table>
+
+<%= link_to "index", items_path %>
